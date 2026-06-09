@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('checkout'){
             steps{
-                 git branch: 'main', url: 'https://github.com/dhawalekartik540-glitch/cbz-three-tier-infra.git' 
+                 git branch: 'main', url: 'https://github.com/mayurmwagh/flight-reservation-app.git' 
             }
 
         }
