@@ -22,7 +22,7 @@ pipeline{
         }
         stage('SonarQube Analysis'){
             steps{
-                withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar') {
+                withSonarQubeEnv(credentialsId: 'sonar-cred', installationName: 'sonar') {
                 sh '''
                     cd FlightReservationApplication
                     mvn sonar:sonar -Dsonar.projectKey=flight-reservation
