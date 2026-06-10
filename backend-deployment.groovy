@@ -1,9 +1,9 @@
 pipeline{
     agent any 
-    environment {
-        REPONAME = 'dhawalekartik540'
-        IMAGE_NAME = 'flight-reservation-cdec-b50'
-    }
+    // environment {
+    //     REPONAME = 'dhawalekartik540'
+    //     IMAGE_NAME = 'flight-reservation-cdec-b50'
+    // }
 
     stages{
         stage('checkout'){
@@ -34,8 +34,8 @@ pipeline{
             steps{
                 sh '''
                     cd FlightReservationApplication
-                    docker build -t $REPONAME/$IMAGE_NAME:$BUILD_NUMBER .
-                    docker push $REPONAME/$IMAGE_NAME:$BUILD_NUMBER
+                    docker build -t dhawalekartik540/flight-reservation-app:latest .
+                    docker push dhawalekartik540/flight-reservation-app:latest
                 '''
             }
         }
@@ -43,7 +43,6 @@ pipeline{
             steps{
                 sh '''
                     cd FlightReservationApplication
-                    sed -i "s|image: dhawalekartik540/flight-reservation-app:latest|image: $REPONAME/$IMAGE_NAME:$BUILD_NUMBER|g" k8s/deployment.yaml
                     kubectl apply -f k8s/deployment.yaml
                     kubectl apply -f k8s/service.yaml
                 '''
