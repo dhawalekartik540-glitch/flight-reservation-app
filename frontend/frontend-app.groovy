@@ -15,18 +15,15 @@ pipeline{
         //         '''
         //     }
         // }
-        stage('Deploy'){
-            steps{
+       stage('Deploy') {
+         steps {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-cred']]) {
                 sh '''
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-cred']]) {
-                accessKeyId = env.AWS_ACCESS_KEY_ID
-                secretAccessKey = env.AWS_SECRET_ACCESS_KEY
-                }
-                cd frontend
-                aws s3 ls
-                
-                '''  
+                    cd frontend
+                    aws s3 ls
+                '''
             }
         }
+    }
     }
 }
