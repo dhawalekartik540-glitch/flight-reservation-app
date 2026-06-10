@@ -17,7 +17,7 @@ pipeline{
         // }
        stage('Deploy') {
          steps {
-            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-cred']]) {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
                 sh '''
                     cd frontend
                     aws s3 ls
